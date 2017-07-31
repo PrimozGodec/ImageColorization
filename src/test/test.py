@@ -60,11 +60,16 @@ def color_images_full(model, name, b_size=32):
             original_im_bw = original_size_images[i]
             h, w = original_im_bw.shape
 
-            # workaround for not suitable shape
-            colored_im = resize_image(np.concatenate((all_images_l[i], color_im[i]), axis=2), (w, h), "LAB")
+            # workaround for not suitable shape while resizing
+            small_images = np.concatenate((all_images_l[i], color_im[i]), axis=2)
+            im_rgb = color.lab2rgb(small_images)
+            scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_save_path + "test" +name + images[batch_n * b_size + i])
+
+            colored_im = resize_image(small_images, (w, h), "LAB")
 
             lab_im = np.concatenate((original_im_bw[:, :, np.newaxis], colored_im[:, :, 1:]), axis=2)
             im_rgb = color.lab2rgb(lab_im)
 
             # save
-            scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_save_path + name + images[batch_n * b_size + i])
+            scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(
+                abs_save_path + name + images[batch_n * b_size + i])
