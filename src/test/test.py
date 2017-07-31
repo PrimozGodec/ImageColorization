@@ -46,7 +46,7 @@ def color_images_full(model, name, b_size=32):
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
             print(original_size_images[i][ :5, :5])
-            print(image_lab_resized[:5, :5, :])
+            print(image_lab_resized[:5, :5, 0])
 
         # prepare images for a global network
         all_vgg = np.zeros((_b_size, 224, 224, 3))
