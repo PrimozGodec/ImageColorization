@@ -48,6 +48,6 @@ def resize_image_lab(im, size, mode):
     ndarray
         Resized image
     """
-    img = Image.fromarray(im, mode)
+    img = Image.fromarray(im, mode).convert('RGB')
     img = img.resize(size, PIL.Image.BILINEAR)
     return color.rgb2lab(np.array(img))
