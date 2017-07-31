@@ -40,10 +40,10 @@ def color_images_full(model, name, b_size=32):
         all_images_l = np.zeros((_b_size, 224, 224, 1))
         for i in range(_b_size):
             # get image
-            image_l = load_bw_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
-            original_size_images.append(image_l)
-            image_l_resized = resize_image(image_l, (224, 224), "F")
-            all_images_l[i, :, :, :] = image_l_resized[:, :, np.newaxis]
+            image_lab = load_bw_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
+            original_size_images.append(image_lab[:, :, 0])
+            image_lab_resized = resize_image(image_lab, (224, 224), "LAB")
+            all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
         # prepare images for a global network
         all_vgg = np.zeros((_b_size, 224, 224, 3))

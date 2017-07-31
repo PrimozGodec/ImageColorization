@@ -5,7 +5,7 @@ import numpy as np
 from skimage import color
 
 
-def load_bw_images(file):
+def load_images(file):
     """
     Function loads black and white image and convert it to CIE LAB
 
@@ -29,10 +29,7 @@ def load_bw_images(file):
 
     img = img.convert(mode="RGB")  # ensure that image rgb
     rgb = np.array(img)
-    if len(rgb.shape) == 3 and (rgb.shape[2]) == 3:  # not black and white
-        return color.rgb2lab(rgb)[:, :, 0]
-    else:
-        return rgb
+    return color.rgb2lab(rgb)
 
 
 def resize_image(im, size, mode):
