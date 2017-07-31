@@ -42,7 +42,7 @@ def color_images_full(model, name, b_size=32):
             # get image
             image_l = load_bw_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
             original_size_images.append(image_l)
-            image_l_resized = resize_image(image_l, (224, 224), "LAB")
+            image_l_resized = resize_image(image_l, (224, 224), "L")
             all_images_l[i, :, :, :] = image_l_resized[:, :, np.newaxis]
 
         # prepare images for a global network
