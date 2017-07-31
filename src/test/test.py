@@ -4,6 +4,7 @@ import os
 import numpy as np
 import scipy.misc
 from skimage import color
+import math
 
 from src.utils.image_utils import load_bw_images, resize_image
 
@@ -31,11 +32,13 @@ def color_images_full(model, name, b_size=32):
     num_of_images = len(images)
 
     # for each batch
-    for batch_n in range(num_of_images // b_size):
+    for batch_n in range(int(math.ceil(num_of_images / b_size))):
+        _b_size = b_size if (batch_n + 1) * b_size < num_of_images else num_of_images % b_size
+
         # load images
         original_size_images = []
-        all_images_l = np.zeros((b_size, 224, 224, 1))
-        for i in range(b_size):
+        all_images_l = np.zeros((_b_size, 224, 224, 1))
+        for i in range(_b_size):
             # get image
             image_l = load_bw_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
             original_size_images.append(image_l)
@@ -43,8 +46,8 @@ def color_images_full(model, name, b_size=32):
             all_images_l[i, :, :, :] = image_l_resized[:, :, np.newaxis]
 
         # prepare images for a global network
-        all_vgg = np.zeros((num_of_images, 224, 224, 3))
-        for i in range(b_size):
+        all_vgg = np.zeros((_b_size, 224, 224, 3))
+        for i in range(_b_size):
             all_vgg[i, :, :, :] = np.tile(all_images_l[i], (1, 1, 1, 3))
 
         # color
@@ -52,7 +55,7 @@ def color_images_full(model, name, b_size=32):
 
         # save all images
         abs_save_path = get_abs_path("../../data/original/")
-        for i in range(b_size):
+        for i in range(_b_size):
             # to rgb
             original_im_bw = original_size_images[i]
             h, w = original_im_bw.shape
