@@ -61,7 +61,7 @@ def color_images_full(model, name, b_size=32):
             h, w = original_im_bw.shape
 
             # workaround for not suitable shape
-            colored_im = resize_image(np.concatenate(all_images_l[i], color_im[i]), (h, w), "LAB")
+            colored_im = resize_image(np.concatenate((all_images_l[i], color_im[i]), axis=2), (h, w), "LAB")
 
             lab_im = np.concatenate((original_im_bw, colored_im[:, :, 1:]), axis=2)
             im_rgb = color.lab2rgb(lab_im)
