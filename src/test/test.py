@@ -65,6 +65,9 @@ def color_images_full(model, name, b_size=32):
             scipy.misc.toimage(all_images_l[i, :, :, 0], cmin=0.0, cmax=100.0).save(
                 abs_save_path + "test2" + name + images[batch_n * b_size + i])
 
+            print(original_im_bw[:5, :5])
+            print(all_images_l[i, :5, :5, 0])
+
             # workaround for not suitable shape while resizing
             small_images = np.concatenate((all_images_l[i], color_im[i]), axis=2)
 
