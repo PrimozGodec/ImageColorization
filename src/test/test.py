@@ -54,7 +54,7 @@ def color_images_full(model, name, b_size=32):
         color_im = model.predict([all_images_l, all_vgg], batch_size=b_size)
 
         # save all images
-        abs_save_path = get_abs_path("../../data/original/")
+        abs_save_path = get_abs_path("../../data/colorized/")
         for i in range(_b_size):
             # to rgb
             original_im_bw = original_size_images[i]
