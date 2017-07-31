@@ -10,7 +10,7 @@ from src.test.test import color_images_full
 b_size = 32
 input_shape = (224, 224, 1)
 
-weights = "../../weights/imp9-full.h5"
+weights = "data/weights/imp9-full.h5"
 color_fun = color_images_full
 name = "reg_full_"
 
