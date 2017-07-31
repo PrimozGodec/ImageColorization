@@ -32,7 +32,7 @@ def load_images(file):
     return color.rgb2lab(rgb)
 
 
-def resize_image(im, size, mode):
+def resize_image_lab(im, size, mode):
     """
     This function resizes images of any colorspace and number of channels
 
@@ -50,5 +50,4 @@ def resize_image(im, size, mode):
     """
     img = Image.fromarray(im, mode)
     img = img.resize(size, PIL.Image.BILINEAR)
-    print(img.mode)
-    return np.array(img)
+    return color.rgb2lab(np.array(img))
