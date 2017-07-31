@@ -34,7 +34,7 @@ def load_bw_images(file):
         return rgb
 
 
-def resize_image(im, size):
+def resize_image(im, size, mode):
     """
     This function resizes images of any colorspace and number of channels
 
@@ -50,4 +50,4 @@ def resize_image(im, size):
     ndarray
         Resized image
     """
-    return scipy.misc.imresize(im, size).astype(float) / 256 * 100
+    return scipy.misc.imresize(im, size, mode).astype(float) / 256 * 100
