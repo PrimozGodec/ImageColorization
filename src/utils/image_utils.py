@@ -50,4 +50,6 @@ def resize_image(im, size, mode):
     ndarray
         Resized image
     """
-    return scipy.misc.imresize(im, size, mode=mode).astype(float) / 256 * 100
+    img = Image.fromarray(im, mode)
+    img = img.resize(size, Image.ANTIALIAS)
+    return np.array(img)
