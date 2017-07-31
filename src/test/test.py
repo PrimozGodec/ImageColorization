@@ -66,7 +66,7 @@ def color_images_full(model, name, b_size=32):
             im_rgb = color.lab2rgb(small_images)
             scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_save_path + "test" +name + images[batch_n * b_size + i])
 
-            colored_im = resize_image_lab(small_images, (w, h), "LAB")
+            colored_im = resize_image_lab(small_images, (h, w), "LAB")
 
 
             print(original_im_bw[:, :, np.newaxis].shape)
