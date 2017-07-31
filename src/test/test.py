@@ -6,7 +6,7 @@ import scipy.misc
 from skimage import color
 import math
 
-from src.utils.image_utils import load_bw_images, resize_image
+from src.utils.image_utils import resize_image, load_images
 
 
 def get_abs_path(relative):
@@ -40,7 +40,7 @@ def color_images_full(model, name, b_size=32):
         all_images_l = np.zeros((_b_size, 224, 224, 1))
         for i in range(_b_size):
             # get image
-            image_lab = load_bw_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
+            image_lab = load_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
             original_size_images.append(image_lab[:, :, 0])
             image_lab_resized = resize_image(image_lab, (224, 224), "LAB")
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
