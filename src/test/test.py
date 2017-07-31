@@ -54,7 +54,11 @@ def color_images_full(model, name, b_size=32):
         abs_save_path = get_abs_path("../../data/original/")
         for i in range(b_size):
             # to rgb
-            lab_im = np.concatenate((all_images_l[i, :, :, :], color_im[i]), axis=2)
+            original_im_bw = original_size_images[i]
+            h, w = original_im_bw.shape
+            colored_im = resize_image(color_im[i], (h, w))
+
+            lab_im = np.concatenate((original_im_bw, colored_im), axis=2)
             im_rgb = color.lab2rgb(lab_im)
 
             # save
