@@ -50,5 +50,5 @@ def resize_image_lab(im, size, mode):
     """
     im = color.lab2rgb(im)
     img = Image.fromarray(im, "RGB")
-    img = img.resize(size, PIL.Image.BILINEAR)
+    img = img.resize(size, Image.ANTIALIAS)
     return color.rgb2lab(np.array(img))
