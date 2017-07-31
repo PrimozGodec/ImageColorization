@@ -62,7 +62,7 @@ def color_images_full(model, name, b_size=32):
 
             scipy.misc.toimage(original_im_bw, cmin=0.0, cmax=100.0).save(
                 abs_save_path + "test1" + name + images[batch_n * b_size + i])
-            scipy.misc.toimage(all_images_l[i], cmin=0.0, cmax=100.0).save(
+            scipy.misc.toimage(all_images_l[i, :, :, 0], cmin=0.0, cmax=100.0).save(
                 abs_save_path + "test2" + name + images[batch_n * b_size + i])
 
             # workaround for not suitable shape while resizing
