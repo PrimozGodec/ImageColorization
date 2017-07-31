@@ -47,8 +47,7 @@ def resize_image_lab(im, size):
     ndarray
         Resized image
     """
+    # because there is not good resizer for a LAB images
     im = (color.lab2rgb(im) * 255).astype(int)
-
     img = scipy.misc.imresize(im, size)
-
     return color.rgb2lab(np.array(img))
