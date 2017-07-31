@@ -48,8 +48,8 @@ def color_images_full(model, name, b_size=32):
             scipy.misc.toimage(all_images_l[i, :, :, 0], cmin=0.0, cmax=100.0).save(
                 get_abs_path("../../data/colorized/") + "test2" + name + images[batch_n * b_size + i])
 
-            print(original_size_images[i][ :5, :5])
-            print(image_lab_resized[:5, :5, 0])
+            # print(original_size_images[i][ :5, :5])
+            # print(image_lab_resized[:5, :5, 0])
 
         # prepare images for a global network
         all_vgg = np.zeros((_b_size, 224, 224, 3))

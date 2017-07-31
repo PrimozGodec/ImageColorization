@@ -22,11 +22,9 @@ def load_images(file):
 
     try:
         img = Image.open(file)
-
     except (OSError, ValueError, IOError, ZeroDivisionError) as e:
         print("Can not open file", file, "Error: ", e)
         return None
-
     img = img.convert(mode="RGB")  # ensure that image rgb
     rgb = np.array(img)
     return color.rgb2lab(rgb)
@@ -49,6 +47,7 @@ def resize_image_lab(im, size, mode):
         Resized image
     """
     im = color.lab2rgb(im)
+    print(im)
     img = Image.fromarray(im, "RGB")
     img = img.resize(size, Image.ANTIALIAS)
     return color.rgb2lab(np.array(img))
