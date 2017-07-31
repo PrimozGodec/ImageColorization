@@ -45,7 +45,7 @@ def color_images_full(model, name, b_size=32):
             image_lab_resized = resize_image(image_lab, (224, 224), "LAB")
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
-            print(original_im_bw[i, :5, :5])
+            print(original_size_images[i, :5, :5])
             print(image_lab_resized[i, :5, :5, :])
 
         # prepare images for a global network
