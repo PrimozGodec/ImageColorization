@@ -1,0 +1,1 @@
+This is directory where user should put images that wants to color.

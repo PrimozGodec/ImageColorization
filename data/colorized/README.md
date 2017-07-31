@@ -1,0 +1,1 @@
+This is directory where colored images are situated.
