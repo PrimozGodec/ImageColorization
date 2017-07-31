@@ -27,6 +27,7 @@ def load_images(file):
         return None
     img = img.convert(mode="RGB")  # ensure that image rgb
     rgb = np.array(img)
+    print(rgb)
     return color.rgb2lab(rgb)
 
 
@@ -49,6 +50,5 @@ def resize_image_lab(im, size, mode):
     im = (color.lab2rgb(im) * 255).astype(int)
     img = Image.fromarray(im, "RGB")
     img = img.resize(size, Image.ANTIALIAS)
-    print(np.array(img).shape
-          )
+
     return color.rgb2lab(np.array(img))
