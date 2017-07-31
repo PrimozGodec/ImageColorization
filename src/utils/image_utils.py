@@ -48,7 +48,8 @@ def resize_image_lab(im, size, mode):
         Resized image
     """
     im = (color.lab2rgb(im) * 255).astype(int)
-    img = Image.fromarray(im)
+    print(im.min(), im.max())
+    img = Image.fromarray(im, "RGB")
     img = img.resize(size, Image.ANTIALIAS)
 
     return color.rgb2lab(np.array(img))
