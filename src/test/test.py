@@ -45,12 +45,6 @@ def color_images_full(model, name, b_size=32):
             image_lab_resized = resize_image_lab(image_lab, (224, 224), "LAB")
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
-            scipy.misc.toimage(all_images_l[i, :, :, 0], cmin=0.0, cmax=100.0).save(
-                get_abs_path("../../data/colorized/") + "test2" + name + images[batch_n * b_size + i])
-
-            print(original_size_images[i][ :5, :5])
-            print(image_lab_resized[:5, :5, 0])
-
         # prepare images for a global network
         all_vgg = np.zeros((_b_size, 224, 224, 3))
         for i in range(_b_size):
@@ -66,12 +60,6 @@ def color_images_full(model, name, b_size=32):
             original_im_bw = original_size_images[i]
             h, w = original_im_bw.shape
 
-            scipy.misc.toimage(original_im_bw, cmin=0.0, cmax=100.0).save(
-                abs_save_path + "test1" + name + images[batch_n * b_size + i])
-
-
-
-
             # workaround for not suitable shape while resizing
             small_images = np.concatenate((all_images_l[i], color_im[i]), axis=2)
 
@@ -80,6 +68,9 @@ def color_images_full(model, name, b_size=32):
 
             colored_im = resize_image_lab(small_images, (w, h), "LAB")
 
+
+            print(original_im_bw[:, :, np.newaxis].shape)
+            print(colored_im[:, :, 1:])
             lab_im = np.concatenate((original_im_bw[:, :, np.newaxis], colored_im[:, :, 1:]), axis=2)
             im_rgb = color.lab2rgb(lab_im)
 
