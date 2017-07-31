@@ -45,6 +45,9 @@ def color_images_full(model, name, b_size=32):
             image_lab_resized = resize_image_lab(image_lab, (224, 224), "LAB")
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
+            scipy.misc.toimage(all_images_l[i, :, :, 0], cmin=0.0, cmax=100.0).save(
+                get_abs_path("../../data/colorized/") + "test2" + name + images[batch_n * b_size + i])
+
             print(original_size_images[i][ :5, :5])
             print(image_lab_resized[:5, :5, 0])
 
@@ -65,8 +68,7 @@ def color_images_full(model, name, b_size=32):
 
             scipy.misc.toimage(original_im_bw, cmin=0.0, cmax=100.0).save(
                 abs_save_path + "test1" + name + images[batch_n * b_size + i])
-            scipy.misc.toimage(all_images_l[i, :, :, 0], cmin=0.0, cmax=100.0).save(
-                abs_save_path + "test2" + name + images[batch_n * b_size + i])
+
 
 
 
