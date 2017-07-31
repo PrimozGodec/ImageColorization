@@ -42,7 +42,7 @@ def color_images_full(model, name, b_size=32):
             # get image
             image_lab = load_images(os.path.join(abs_file_path, images[batch_n * b_size + i]))
             original_size_images.append(image_lab[:, :, 0])
-            image_lab_resized = resize_image_lab(image_lab, (224, 224), "LAB")
+            image_lab_resized = resize_image_lab(image_lab, (224, 224))
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
         # prepare images for a global network
@@ -66,11 +66,8 @@ def color_images_full(model, name, b_size=32):
             im_rgb = color.lab2rgb(small_images)
             scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_save_path + "test" +name + images[batch_n * b_size + i])
 
-            colored_im = resize_image_lab(small_images, (h, w), "LAB")
+            colored_im = resize_image_lab(small_images, (h, w))
 
-
-            print(original_im_bw[:, :, np.newaxis].shape)
-            print(colored_im[:, :, 1:].shape)
             lab_im = np.concatenate((original_im_bw[:, :, np.newaxis], colored_im[:, :, 1:]), axis=2)
             im_rgb = color.lab2rgb(lab_im)
 

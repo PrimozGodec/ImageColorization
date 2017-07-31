@@ -31,7 +31,7 @@ def load_images(file):
     return color.rgb2lab(rgb)
 
 
-def resize_image_lab(im, size, mode):
+def resize_image_lab(im, size):
     """
     This function resizes images of any colorspace and number of channels
 
@@ -50,7 +50,5 @@ def resize_image_lab(im, size, mode):
     im = (color.lab2rgb(im) * 255).astype(int)
 
     img = scipy.misc.imresize(im, size)
-    # img = Image.fromarray(im, "RGB")
-    # img = img.resize(size, Image.ANTIALIAS)
 
     return color.rgb2lab(np.array(img))
