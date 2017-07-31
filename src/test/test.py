@@ -66,7 +66,7 @@ def color_images_full(model, name, b_size=32):
                 abs_save_path + "test2" + name + images[batch_n * b_size + i])
 
             print(original_im_bw[:5, :5])
-            print(all_images_l[i, :5, :5, 0])
+            print(all_images_l[i, :5, :5, :])
 
             # workaround for not suitable shape while resizing
             small_images = np.concatenate((all_images_l[i], color_im[i]), axis=2)
