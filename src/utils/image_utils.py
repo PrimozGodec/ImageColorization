@@ -1,3 +1,4 @@
+import PIL
 import scipy.misc
 from PIL import Image
 import numpy as np
@@ -51,5 +52,5 @@ def resize_image(im, size, mode):
         Resized image
     """
     img = Image.fromarray(im, mode)
-    img = img.resize(size, Image.ANTIALIAS)
+    img = img.resize(size, PIL.Image.BILINEAR)
     return np.array(img)
