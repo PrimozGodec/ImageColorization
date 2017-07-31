@@ -50,4 +50,5 @@ def resize_image(im, size, mode):
     """
     img = Image.fromarray(im, mode)
     img = img.resize(size, PIL.Image.BILINEAR)
+    print(img.mode)
     return np.array(img)
