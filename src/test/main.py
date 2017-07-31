@@ -17,5 +17,5 @@ if __name__ == "__main__":
     model.load_weights(imported_model.weights)
 
     # color images
-    imported_model.colorfun(model, imported_model.name)
+    imported_model.color_fun(model, imported_model.name)
 
