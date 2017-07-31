@@ -46,8 +46,8 @@ def resize_image_lab(im, size, mode):
     ndarray
         Resized image
     """
-    im = color.lab2rgb(im)
-    print(im)
+    im = int(color.lab2rgb(im) * 255)
+
     img = Image.fromarray(im, "RGB")
     img = img.resize(size, Image.ANTIALIAS)
     return color.rgb2lab(np.array(img))
