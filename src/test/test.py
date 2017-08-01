@@ -144,10 +144,10 @@ def color_images_part(model):
         Model for image colorization
     """
 
-    # find directory
+    # get images to color
     test_set_dir_path = get_abs_path(data_origin)
 
-    image_list =get_image_list(test_set_dir_path)
+    image_list = get_image_list(test_set_dir_path)
     num_of_images = len(image_list)
 
     # repeat for each image
@@ -156,7 +156,6 @@ def color_images_part(model):
         image_lab = load_images(os.path.join(test_set_dir_path, image_list[i]))
         image_l = image_lab[:, :, 0]
         h, w = image_l.shape
-
 
         # split images to list of images
         slices_dim_h = int(math.ceil(h/32))
@@ -177,12 +176,12 @@ def color_images_part(model):
         image_l_224 = np.repeat(image_lab_224_b[:, :, 0, np.newaxis], 3, axis=2).astype(float)
 
         # append together booth lists
-        input_data = [slices, np.array([image_l_224,] * slices_dim_h * slices_dim_w * 4)]
+        input_data = [slices, np.array([image_l_224, ] * slices_dim_h * slices_dim_w * 4)]
 
         # predict
         predictions_ab = model.predict(input_data, batch_size=32)
 
-        # for histograms
+        # for histograms -> transformation from hist to ab
         if model.name == "class_wo_weights" or model.name == "class_with_weights":
             print("HIST")
             indices = np.argmax(predictions_ab[:, :, :, :], axis=3)
@@ -191,8 +190,7 @@ def color_images_part(model):
             predictions_b = indices % 20 * 10 - 100 + 5  # +5 to set in the middle box
             predictions_ab = np.stack((predictions_a, predictions_b), axis=3)
 
-
-        # reshape back
+        # reshape back to original size
         original_size_im = np.zeros((slices_dim_h * 32, slices_dim_w * 32, 2))
         o_h, o_w = original_size_im.shape[:2]
 
@@ -224,7 +222,6 @@ def color_images_part(model):
 
             im_a = predictions_ab[n, :, :, 0] * weight
             im_b = predictions_ab[n, :, :, 1] * weight
-
 
             original_size_im[a:a+32, b:b+32, :] += np.stack((im_a, im_b), axis=2)
 
