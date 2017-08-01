@@ -10,8 +10,8 @@ from src.utils.image_utils import load_images, resize_image_lab
 
 
 # variables
-data_origin = "../../data/original"
-data_destination = "../../data/colorized/"
+data_origin = "../../data/image/original"
+data_destination = "../../data/image/colorized/"
 
 
 def get_abs_path(relative):
