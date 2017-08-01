@@ -143,7 +143,7 @@ def color_images_part(model, name):
         original_size_im = np.zeros((slices_dim_h * 32, slices_dim_w * 32, 2))
 
         for n in range(predictions_ab.shape[0]):
-            a, b = n // (slices_dim_h * 2) * 16, n % (slices_dim_w * 2) * 16
+            a, b = n // (slices_dim_h * 2) * 16, n % (slices_dim_h * 2) * 16
 
             if a + 32 > 256 or b + 32 > 256:
                 continue  # it is empty edge
@@ -171,20 +171,18 @@ def color_images_part(model, name):
             im_a = predictions_ab[n, :, :, 0] * weight
             im_b = predictions_ab[n, :, :, 1] * weight
 
-            print(im_a.shape, im_b.shape)
 
             original_size_im[a:a+32, b:b+32, :] += np.stack((im_a, im_b), axis=2)
 
         # make original shape image
         original_size_im = original_size_im[:h, :w]
 
-        im_name = image_list[i]
-
         # to rgb
         color_im = np.concatenate((image_l[:, :, np.newaxis], original_size_im), axis=2)
         im_rgb = color.lab2rgb(color_im)
 
         # save
-        abs_svave_path = os.path.join(get_abs_path(data_destination))
+        abs_svave_path = get_abs_path(data_destination)
         # commented to speedup
+        print(abs_svave_path + name + "_" + image_list[i])
         scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_svave_path + name + "_" + image_list[i])
