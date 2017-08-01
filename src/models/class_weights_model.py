@@ -6,14 +6,14 @@ from keras import optimizers
 from keras.layers import Conv2D, Lambda, Dense, concatenate, regularizers, add, Conv2DTranspose, MaxPooling2D, \
     UpSampling2D, Activation
 
-from src.test.test import color_images_full
+from src.test.test import color_images_part
 
 b_size = 32
 input_shape = (32, 32, 1)
 num_classes = 400
 
 weights = "data/weights/hist5.h5"
-color_fun = color_images_full
+color_fun = color_images_part
 
 
 def model():
