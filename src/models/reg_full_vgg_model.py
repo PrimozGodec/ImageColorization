@@ -15,7 +15,14 @@ color_fun = color_images_full
 
 
 def model():
-    # VGG
+    """
+    Function build and returns model for approach regression full vgg
+
+    Returns
+    -------
+    keras.engine.training.Model
+        Keras model for approach
+    """
     vgg16 = VGG16(weights="imagenet", include_top=False, input_shape=input_shape)
 
     # freeze vgg16
