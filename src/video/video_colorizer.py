@@ -111,6 +111,7 @@ def color_one_video(model, video, b_size=32):
 
             # save
             videowriter.writeFrame(im_rgb)
+        print(batch_n)
     videowriter.close()
 
 if __name__ == "__main__":
