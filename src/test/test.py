@@ -97,7 +97,7 @@ weight_bottom_left = np.hstack((one[:, :16], xv[:, 16:])) * np.vstack((yv[:16, :
 weight_bottom_right = np.hstack((xv[:, :16], one[:, 16:])) * np.vstack((yv[:16, :], one[16:, :]))
 
 
-def image_error_small_vgg(model, name):
+def color_images_part(model, name):
     """
     reg-part
     """
