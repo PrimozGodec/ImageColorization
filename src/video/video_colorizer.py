@@ -9,8 +9,8 @@ from skimage import color
 from src.models import reg_full_model
 from src.utils.image_utils import resize_image_lab
 
-source_dir = "../../data/videos/original"
-destination_dir = "../../data/videos/colorized"
+source_dir = "../../data/video/original"
+destination_dir = "../../data/video/colorized"
 
 
 def get_abs_path(relative):
