@@ -46,12 +46,16 @@ def color_images_full(model, name, b_size=32):
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
         # prepare images for a global network
-        all_vgg = np.zeros((_b_size, 224, 224, 3))
-        for i in range(_b_size):
-            all_vgg[i, :, :, :] = np.tile(all_images_l[i], (1, 1, 1, 3))
+        if model.name != "reg_full_vgg":
+            all_vgg = np.zeros((_b_size, 224, 224, 3))
+            for i in range(_b_size):
+                all_vgg[i, :, :, :] = np.tile(all_images_l[i], (1, 1, 1, 3))
 
         # color
-        color_im = model.predict([all_images_l, all_vgg], batch_size=b_size)
+        if model.name == "reg_full_vgg":
+            color_im = model.predict(all_images_l, batch_size=b_size)
+        else:
+            color_im = model.predict([all_images_l, all_vgg], batch_size=b_size)
 
         # save all images
         abs_save_path = get_abs_path("../../data/colorized/")
@@ -69,6 +73,6 @@ def color_images_full(model, name, b_size=32):
 
             # save
             scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(
-                abs_save_path + name + images[batch_n * b_size + i])
+                abs_save_path + name + "_" + images[batch_n * b_size + i])
 
 

@@ -1,11 +1,11 @@
 import argparse
 
 # from src.models import reg_ful_model
-import src.models.reg_ful_model
+import src.models.reg_full_model
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Test model')
-    parser.add_argument('--model', type=str, default="reg_ful_model", help="Choose name of the model you want to test")
+    parser.add_argument('--model', type=str, default="reg_full_model", help="Choose name of the model you want to test")
 
     args = parser.parse_args()
 
