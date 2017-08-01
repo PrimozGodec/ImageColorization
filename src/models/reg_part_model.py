@@ -15,6 +15,14 @@ color_fun = color_images_part
 
 
 def model():
+    """
+    Function build and returns model for approach regression part
+
+    Returns
+    -------
+    keras.engine.training.Model
+        Keras model for approach
+    """
     main_input = Input(shape=input_shape, name='image_part_input')
 
     x = Conv2D(64, (3, 3), padding="same", activation="relu",
