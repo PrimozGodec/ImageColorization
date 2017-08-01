@@ -61,7 +61,7 @@ def color_images_full(model, b_size=32):
 
     Parameters
     ----------
-    model : Keras model
+    model : keras.engine.training.Model
         Model for image colorization
     b_size : int
         Size of bach of images
@@ -140,7 +140,7 @@ def color_images_part(model):
 
     Parameters
     ----------
-    model : Keras model
+    model : keras.engine.training.Model
         Model for image colorization
     """
 
