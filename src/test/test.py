@@ -70,3 +70,5 @@ def color_images_full(model, name, b_size=32):
             # save
             scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(
                 abs_save_path + name + images[batch_n * b_size + i])
+
+
