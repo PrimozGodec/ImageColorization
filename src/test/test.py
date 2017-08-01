@@ -143,7 +143,7 @@ def color_images_part(model, name):
 
         # reshape back
         original_size_im = np.zeros((slices_dim_h * 32, slices_dim_w * 32, 2))
-        o_h, o_w = original_size_im.shape
+        o_h, o_w = original_size_im.shape[:2]
 
         for n in range(predictions_ab.shape[0]):
             a, b = n // (slices_dim_w * 2) * 16, n % (slices_dim_w * 2) * 16
