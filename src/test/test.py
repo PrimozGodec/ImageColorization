@@ -14,23 +14,58 @@ data_origin = "../../data/original"
 data_destination = "../../data/colorized/"
 
 
-
 def get_abs_path(relative):
+    """
+    Function returns absolute path to the destination.
+    It makes paths independent from places where called.
+
+    Parameters
+    ----------
+    relative : str
+        Relative path to the destination dependent on this script
+
+    Returns
+    -------
+    str
+        Absolute path to the destination
+    """
     script_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  # script directory
     return os.path.join(script_dir, relative)
 
 
 def get_image_list(dir_path):
+    """
+    This function returns list of images in directory.
+    If any file that you want to color has different ending add it to the list.
+    Different files may not be supported for later colorization.
+
+    Parameters
+    ----------
+    dir_path : str
+        Path to the directory
+
+    Returns
+    -------
+    list of str
+        List of file names that contains images
+    """
     image_list = os.listdir(dir_path)
     ext = [".jpg", ".JPG", ".jpeg", ".JPEG", ".png"]
     return [im for im in image_list if im.endswith(tuple(ext))]
 
 
-def color_images_full(model, name, b_size=32):
+def color_images_full(model, b_size=32):
     """
-    reg-full, reg-full-vgg
-    """
+    Function that colors images with approaches on full images.
+    Function is used on reg-full and reg-full-vgg approaches.
 
+    Parameters
+    ----------
+    model : Keras model
+        Model for image colorization
+    b_size : int
+        Size of bach of images
+    """
     abs_file_path = get_abs_path(data_origin)
     images = get_image_list(abs_file_path)
 
@@ -78,7 +113,7 @@ def color_images_full(model, name, b_size=32):
 
             # save
             scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(
-                abs_save_path + name + "_" + images[batch_n * b_size + i])
+                abs_save_path + model.name + "_" + images[batch_n * b_size + i])
 
 
 # matrices for multiplying that needs to calculate only once
@@ -97,9 +132,15 @@ weight_bottom_left = np.hstack((one[:, :16], xv[:, 16:])) * np.vstack((yv[:16, :
 weight_bottom_right = np.hstack((xv[:, :16], one[:, 16:])) * np.vstack((yv[:16, :], one[16:, :]))
 
 
-def color_images_part(model, name):
+def color_images_part(model):
     """
-    reg-part
+    Function that colors images with approaches on part of images.
+    Function is used on reg-parts, class-wo-weights and class-with-weights approaches.
+
+    Parameters
+    ----------
+    model : Keras model
+        Model for image colorization
     """
 
     # find directory
@@ -195,6 +236,4 @@ def color_images_part(model, name):
 
         # save
         abs_svave_path = get_abs_path(data_destination)
-        # commented to speedup
-        print(abs_svave_path + name + "_" + image_list[i])
-        scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_svave_path + name + "_" + image_list[i])
+        scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_svave_path + model.name + "_" + image_list[i])
