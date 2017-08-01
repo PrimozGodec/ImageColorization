@@ -72,6 +72,8 @@ def color_images_full(model, b_size=32):
     # get list of images to color
     num_of_images = len(images)
 
+    type(b_size)
+
     # for each batch
     for batch_n in range(int(math.ceil(num_of_images / b_size))):
         _b_size = b_size if (batch_n + 1) * b_size < num_of_images else num_of_images % b_size
