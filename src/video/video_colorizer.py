@@ -64,6 +64,7 @@ def color_one_video(model, video, b_size=32):
 
     # for each batch
     # metadata
+    print(skvideo.io.ffprobe(os.path.join(source_dir, video)))
     metadata = skvideo.io.ffprobe(os.path.join(source_dir, video))["video"]
     num_frames = metadata["nb_frames"]
     w, h = metadata["width"], metadata["height"]
