@@ -1,7 +1,5 @@
 import argparse
 
-# from src.models import reg_ful_model
-import src.models.reg_full_model
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Test model')
@@ -18,4 +16,3 @@ if __name__ == "__main__":
 
     # color images
     imported_model.color_fun(model, model.name)
-
