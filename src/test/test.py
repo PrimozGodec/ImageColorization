@@ -171,6 +171,8 @@ def color_images_part(model, name):
             im_a = predictions_ab[n, :, :, 0] * weight
             im_b = predictions_ab[n, :, :, 1] * weight
 
+            print(im_a.shape, im_b.shape)
+
             original_size_im[a:a+32, b:b+32, :] += np.stack((im_a, im_b), axis=2)
 
         # make original shape image
