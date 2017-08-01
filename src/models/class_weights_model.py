@@ -5,7 +5,7 @@ from keras import backend as K, Input
 from keras import optimizers
 from keras.layers import Conv2D, Lambda, Dense, concatenate, UpSampling2D, Activation
 
-from src.test.test import color_images_part
+from src.image_colorization.test import color_images_part
 
 b_size = 32
 input_shape = (32, 32, 1)

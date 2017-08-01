@@ -70,19 +70,19 @@ def color_videos(model):
 
 def color_one_video(model, video, b_size=32):
     """
-    Function color one video and save it to destination directory
+    Function color one video_colorization and save it to destination directory
 
     Parameters
     ----------
     model : keras.engine.training.Model
         Model used fro colorization
     video : str
-        Name of video to color. Video is situated in source directory
+        Name of video_colorization to color. Video is situated in source directory
     b_size : int
         Size of frames that are colored in one step
     """
     # metadata
-    metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video"]
+    metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video_colorization"]
     num_frames = int(metadata["@nb_frames"])
     w, h = int(metadata["@width"]), int(metadata["@height"])
 

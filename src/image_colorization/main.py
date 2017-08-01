@@ -3,7 +3,7 @@ import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Test model')
-    parser.add_argument('--model', type=str, default="reg_full_model", help="Choose name of the model you want to test")
+    parser.add_argument('--model', type=str, default="reg_full_model", help="Choose name of the model you want to image_colorization")
 
     args = parser.parse_args()
 
