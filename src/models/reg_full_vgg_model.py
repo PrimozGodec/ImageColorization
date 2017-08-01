@@ -1,10 +1,9 @@
 from keras.applications import VGG16
 from keras.engine import Model
 
-from keras import backend as K, Input
+from keras import backend as K
 from keras import optimizers
-from keras.layers import Conv2D, Lambda, Dense, concatenate, regularizers, add, Conv2DTranspose, MaxPooling2D, \
-    UpSampling2D
+from keras.layers import Conv2D, Lambda, regularizers, UpSampling2D
 
 from src.test.test import color_images_full
 
@@ -60,5 +59,3 @@ def model():
     model.name = "reg_full_vgg"
 
     return model
-
-

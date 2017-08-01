@@ -3,8 +3,7 @@ from keras.engine import Model
 
 from keras import backend as K, Input
 from keras import optimizers
-from keras.layers import Conv2D, Lambda, Dense, concatenate, regularizers, add, Conv2DTranspose, MaxPooling2D, \
-    UpSampling2D, Activation
+from keras.layers import Conv2D, Lambda, Dense, concatenate, UpSampling2D, Activation
 
 from src.test.test import color_images_part
 
