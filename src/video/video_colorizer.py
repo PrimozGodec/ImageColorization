@@ -77,7 +77,7 @@ def color_one_video(model, video, b_size=32):
     videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video))
 
     for batch_n in range(int(math.ceil(num_frames / b_size))):
-        _b_size = b_size if batch_n * b_size <= num_frames else num_frames % b_size
+        _b_size = b_size if (batch_n + 1) * b_size <= num_frames else num_frames % b_size
 
         # load images
         original_size_images = []
