@@ -70,6 +70,8 @@ def color_one_video(model, video, b_size=32):
 
     print(num_frames, w, h)
 
+    aaaa = 0
+
     # open reader
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
     videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video))
@@ -82,6 +84,8 @@ def color_one_video(model, video, b_size=32):
         all_images_l = np.zeros((_b_size, 224, 224, 1))
         for i in range(_b_size):
             # get image
+            aaaa += 1
+            print(aaaa)
             image_rgb = next(videogen)
             image_lab = color.rgb2lab(image_rgb)
             original_size_images.append(image_lab[:, :, 0])
