@@ -113,7 +113,7 @@ def color_one_video(model, video, b_size=32):
             colored_im = resize_image_lab(small_images, (h, w))
 
             lab_im = np.concatenate((original_im_bw[:, :, np.newaxis], colored_im[:, :, 1:]), axis=2)
-            im_rgb = color.lab2rgb(lab_im)
+            im_rgb = (color.lab2rgb(lab_im) * 255).astype(int)
 
             # save
             videowriter.writeFrame(im_rgb)
