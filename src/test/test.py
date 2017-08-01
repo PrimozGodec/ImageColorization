@@ -92,7 +92,7 @@ def color_images_full(model, b_size=32):
             all_vgg[i, :, :, :] = np.tile(all_images_l[i], (1, 1, 1, 3))
 
         # color
-        if model.name == "reg_full_vgg":
+        if model.name == "reg_full_vgg":  # vgg has no global network
             color_im = model.predict(all_vgg, batch_size=b_size)
         else:
             color_im = model.predict([all_images_l, all_vgg], batch_size=b_size)
@@ -117,6 +117,7 @@ def color_images_full(model, b_size=32):
 
 
 # matrices for multiplying that needs to calculate only once
+# matrices are used in coloring on parts
 vec = np.hstack((np.linspace(1/16, 1 - 1/16, 16), np.flip(np.linspace(1/16, 1 - 1/16, 16), axis=0)))
 one = np.ones((32, 32))
 xv, yv = np.meshgrid(vec, vec)
