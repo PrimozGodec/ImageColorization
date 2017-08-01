@@ -126,7 +126,7 @@ def color_images_part(model, name):
                 _part = np.zeros((32, 32))
                 _part[:part.shape[0], :part.shape[1]] = part
 
-                slices[a * slices_dim_h * 2 + b] = _part[:, :, np.newaxis]
+                slices[a * slices_dim_w * 2 + b] = _part[:, :, np.newaxis]
 
         # lover originals dimension to 224x224 to feed vgg and increase dim
         image_lab_224_b = resize_image_lab(image_lab, (224, 224))
@@ -143,7 +143,7 @@ def color_images_part(model, name):
         original_size_im = np.zeros((slices_dim_h * 32, slices_dim_w * 32, 2))
 
         for n in range(predictions_ab.shape[0]):
-            a, b = n // (slices_dim_h * 2) * 16, n % (slices_dim_h * 2) * 16
+            a, b = n // (slices_dim_w * 2) * 16, n % (slices_dim_w * 2) * 16
 
             if a + 32 > 256 or b + 32 > 256:
                 continue  # it is empty edge
