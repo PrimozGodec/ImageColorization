@@ -14,7 +14,7 @@ num_classes = 400
 
 weights = "data/weights/hist5.h5"
 color_fun = color_images_full
-name = "class_weights_"
+
 
 def model():
 

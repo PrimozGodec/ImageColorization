@@ -12,11 +12,10 @@ if __name__ == "__main__":
     # import from user selected model
     imported_model = __import__('src.models.' + args.model, fromlist=[''])
     model = imported_model.model()
-    print(model.name)
-    exit()
+
     # load weights
     model.load_weights(imported_model.weights)
 
     # color images
-    imported_model.color_fun(model, imported_model.name)
+    imported_model.color_fun(model, model.name)
 

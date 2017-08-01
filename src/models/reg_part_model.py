@@ -12,7 +12,7 @@ input_shape = (32, 32, 1)
 
 weights = "data/weights/imp9.h5"
 color_fun = color_images_full
-name = "reg_part_"
+
 
 def model():
     main_input = Input(shape=input_shape, name='image_part_input')

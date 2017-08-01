@@ -13,7 +13,7 @@ input_shape = (32, 32, 1)
 
 weights = "data/weights/hist2.h5"
 color_fun = color_images_full
-name = "class_without_weights"
+
 
 def model():
     num_classes = 400

@@ -12,7 +12,7 @@ input_shape = (224, 224, 1)
 
 weights = "data/weights/imp9-full.h5"
 color_fun = color_images_full
-name = "reg_full_"
+
 
 def model():
     # main network

@@ -13,7 +13,7 @@ input_shape = (224, 224, 3)
 
 weights = "data/weights/vgg.h5"
 color_fun = color_images_full
-name = "reg_full_vgg_"
+
 
 def model():
     # VGG
