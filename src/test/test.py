@@ -114,12 +114,12 @@ def color_images_part(model, name):
         image_lab = load_images(os.path.join(test_set_dir_path, image_list[i]))
         image_l = image_lab[:, :, 0]
         h, w = image_l.shape
-        print(h, w)
+
 
         # split images to list of images
         slices_dim_h = int(math.ceil(h/32))
         slices_dim_w = int(math.ceil(w/32))
-        print(slices_dim_h, slices_dim_w)
+
         slices = np.zeros((slices_dim_h * slices_dim_w * 4, 32, 32, 1))
         for a in range(slices_dim_h * 2 - 1):
             for b in range(slices_dim_w * 2 - 1):
@@ -143,11 +143,12 @@ def color_images_part(model, name):
 
         # reshape back
         original_size_im = np.zeros((slices_dim_h * 32, slices_dim_w * 32, 2))
+        o_h, o_w = original_size_im.shape
 
         for n in range(predictions_ab.shape[0]):
             a, b = n // (slices_dim_w * 2) * 16, n % (slices_dim_w * 2) * 16
 
-            if a + 32 > 256 or b + 32 > 256:
+            if a + 32 > o_h or b + 32 > o_w:
                 continue  # it is empty edge
 
             # weight decision
