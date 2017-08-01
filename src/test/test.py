@@ -154,19 +154,19 @@ def color_images_part(model, name):
             # weight decision
             if a == 0 and b == 0:
                 weight = weight_top_left
-            elif a == 0 and b == 224:
+            elif a == 0 and b == o_w - 32:
                 weight = weight_top_right
             elif a == 0:
                 weight = weight_top
-            elif a == 224 and b == 0:
+            elif a == o_h - 32 and b == 0:
                 weight = weight_bottom_left
             elif b == 0:
                 weight = weight_left
-            elif a == 224 and b == 224:
+            elif a == o_h - 32 and b == o_w - 32:
                 weight = weight_bottom_right
-            elif a == 224:
+            elif a == o_h - 32:
                 weight = weight_bottom
-            elif b == 224:
+            elif b == o_w - 32:
                 weight = weight_right
             else:
                 weight = weight_m
