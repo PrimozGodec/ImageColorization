@@ -92,5 +92,6 @@ def model():
     model.compile(optimizer=opt, loss=custom_mse)
 
     model.summary()
+    model.name = "reg_part"
 
     return model

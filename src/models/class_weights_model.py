@@ -100,5 +100,6 @@ def model():
     model.compile(optimizer=opt, loss=categorical_crossentropy_color)
 
     model.summary()
+    model.name = "class_with_weights"
 
     return model

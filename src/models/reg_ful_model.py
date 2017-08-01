@@ -95,5 +95,6 @@ def model():
     model.compile(optimizer=opt, loss=custom_mse)
 
     model.summary()
+    model.name = "reg_full"
 
     return model

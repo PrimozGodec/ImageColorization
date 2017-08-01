@@ -82,4 +82,6 @@ def model():
     model.compile(optimizer=opt, loss=custom_kullback_leibler_divergence)
 
     model.summary()
+    model.name = "class_wo_weights"
+
     return model
