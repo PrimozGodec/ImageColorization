@@ -133,13 +133,22 @@ def color_images_part(model, name):
         # lover originals dimension to 224x224 to feed vgg and increase dim
         image_lab_224_b = resize_image_lab(image_lab, (224, 224))
         image_l_224 = np.repeat(image_lab_224_b[:, :, 0, np.newaxis], 3, axis=2).astype(float)
-        print(image_l_224.shape)
 
         # append together booth lists
         input_data = [slices, np.array([image_l_224,] * slices_dim_h * slices_dim_w * 4)]
 
         # predict
         predictions_ab = model.predict(input_data, batch_size=32)
+
+        # for histograms
+        if model.name == "class_wo_weights" or model.name == "class_with_weights":
+            print("HIST")
+            indices = np.argmax(predictions_ab[:, :, :, :], axis=3)
+
+            predictions_a = indices // 20 * 10 - 100 + 5
+            predictions_b = indices % 20 * 10 - 100 + 5  # +5 to set in the middle box
+            predictions_ab = np.stack((predictions_a, predictions_b), axis=3)
+
 
         # reshape back
         original_size_im = np.zeros((slices_dim_h * 32, slices_dim_w * 32, 2))
