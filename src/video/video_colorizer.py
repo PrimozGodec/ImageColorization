@@ -121,3 +121,7 @@ if __name__ == "__main__":
 
     # load weights
     model.load_weights(reg_full_model.weights)
+
+    color_videos(model)
+
+    print("done")
