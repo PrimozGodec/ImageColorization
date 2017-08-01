@@ -119,7 +119,7 @@ def color_images_part(model, name):
         # split images to list of images
         slices_dim_h = int(math.ceil(h/32))
         slices_dim_w = int(math.ceil(w/32))
-        print(slices_dim_w, slices_dim_w)
+        print(slices_dim_h, slices_dim_w)
         slices = np.zeros((slices_dim_h * slices_dim_w * 4, 32, 32, 1))
         for a in range(slices_dim_h * 2 - 1):
             for b in range(slices_dim_w * 2 - 1):
