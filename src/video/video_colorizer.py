@@ -54,6 +54,14 @@ def get_video_list(dir_path):
 
 
 def color_videos(model):
+    """
+    Function finds all videos to colorize and call colorization on each
+
+    Parameters
+    ----------
+    model : keras.engine.training.Model
+        Model used for colorization
+    """
     # find videos
     videos = get_video_list(get_abs_path(source_dir))
     for video in videos:
@@ -61,21 +69,28 @@ def color_videos(model):
 
 
 def color_one_video(model, video, b_size=32):
+    """
+    Function color one video and save it to destination directory
 
-    # for each batch
+    Parameters
+    ----------
+    model : keras.engine.training.Model
+        Model used fro colorization
+    video : str
+        Name of video to color. Video is situated in source directory
+    b_size : int
+        Size of frames that are colored in one step
+    """
     # metadata
     metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video"]
     num_frames = int(metadata["@nb_frames"])
     w, h = int(metadata["@width"]), int(metadata["@height"])
 
-    print(num_frames, w, h)
-
-    aaaa = 0
-
-    # open reader
+    # open reader and writer
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
     videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video))
 
+    # for each batch
     for batch_n in range(int(math.ceil(num_frames / b_size))):
         _b_size = b_size if (batch_n + 1) * b_size <= num_frames else num_frames % b_size
 
@@ -83,9 +98,6 @@ def color_one_video(model, video, b_size=32):
         original_size_images = []
         all_images_l = np.zeros((_b_size, 224, 224, 1))
         for i in range(_b_size):
-            # get image
-            aaaa += 1
-            print(aaaa)
             image_rgb = next(videogen)
             image_lab = color.rgb2lab(image_rgb)
             original_size_images.append(image_lab[:, :, 0])
