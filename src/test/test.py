@@ -46,14 +46,13 @@ def color_images_full(model, name, b_size=32):
             all_images_l[i, :, :, :] = image_lab_resized[:, :, 0][:, :, np.newaxis]
 
         # prepare images for a global network
-        if model.name != "reg_full_vgg":
-            all_vgg = np.zeros((_b_size, 224, 224, 3))
-            for i in range(_b_size):
-                all_vgg[i, :, :, :] = np.tile(all_images_l[i], (1, 1, 1, 3))
+        all_vgg = np.zeros((_b_size, 224, 224, 3))
+        for i in range(_b_size):
+            all_vgg[i, :, :, :] = np.tile(all_images_l[i], (1, 1, 1, 3))
 
         # color
         if model.name == "reg_full_vgg":
-            color_im = model.predict(all_images_l, batch_size=b_size)
+            color_im = model.predict(all_vgg, batch_size=b_size)
         else:
             color_im = model.predict([all_images_l, all_vgg], batch_size=b_size)
 
