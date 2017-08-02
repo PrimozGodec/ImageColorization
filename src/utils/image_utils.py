@@ -57,9 +57,20 @@ def resize_image_lab(im, size):
 
 
 def get_weights(file_name):
-    # weights_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data/weights")
-    weights_url = "https://github.com/PrimozGodec/ImageColorization/releases/download/v0.0.1"
+    """
+    Function check if weights exist. If they not it downloads them from release in Github.
 
+    Parameters
+    ----------
+    file_name : str
+        Path to the weight file or its destination to download
+
+    Returns
+    -------
+    str
+        Path to the weight file
+    """
+    weights_url = "https://github.com/PrimozGodec/ImageColorization/releases/download/v0.0.1"
 
     # if file do not exist download it
     print(file_name)
