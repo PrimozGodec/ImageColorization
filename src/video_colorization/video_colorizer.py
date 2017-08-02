@@ -86,10 +86,12 @@ def color_one_video(model, video, b_size=32):
     metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video"]
     num_frames = int(metadata["@nb_frames"])
     w, h = int(metadata["@width"]), int(metadata["@height"])
+    frame_rate = metadata["@r_frame_rate"].split("/")[0]
 
     # open reader and writer
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
-    videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video))
+    videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video),
+                                          outputdict={"-framerate": frame_rate})
 
     # progress bar
     print("Starting", video)
