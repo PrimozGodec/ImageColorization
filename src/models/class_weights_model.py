@@ -23,6 +23,7 @@ def model():
     keras.engine.training.Model
         Keras model for approach
     """
+    K.set_learning_phase(1)
 
     main_input = Input(shape=input_shape, name='image_part_input')
 
