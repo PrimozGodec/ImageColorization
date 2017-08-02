@@ -71,7 +71,7 @@ def get_weights(file_name):
             pbar.update(int(count * block_size * 100 / total_size))
 
         # download
-        urllib.request.urlretrieve(os.path.join(weights_url, file_name),
+        urllib.request.urlretrieve(os.path.join(weights_url, file_name.split("/")[-1]),
                                    file_name,
                                    reporthook=show_progress)
 
