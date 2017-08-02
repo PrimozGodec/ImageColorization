@@ -64,15 +64,18 @@ def get_weights(file_name):
     # if file do not exist download it
     print(file_name)
     if not os.path.isfile(file_name):
+        print("Downloading trained model")
         # init progress bar
-        pbar = ProgressBar(widgets=[Percentage(), Bar()])
+        pbar = None
 
         def show_progress(count, block_size, total_size):
-            pbar.update(int(count * block_size * 100 / total_size))
+            if pbar is None:
+                pbar = ProgressBar(maxval=total_size, widgets=[Percentage(), Bar()])
+            pbar.update(count * block_size)
 
         # download
         urllib.request.urlretrieve(os.path.join(weights_url, file_name.split("/")[-1]),
                                    file_name,
                                    reporthook=show_progress)
-
+        print("Downloading done")
     return file_name
