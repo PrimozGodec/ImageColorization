@@ -1,7 +1,10 @@
-import PIL
+import os
+import urllib.request
+
 import scipy.misc
 from PIL import Image
 import numpy as np
+from progressbar import ProgressBar, Percentage, Bar
 from skimage import color
 
 
@@ -51,3 +54,22 @@ def resize_image_lab(im, size):
     im = (color.lab2rgb(im) * 255).astype(int)
     img = scipy.misc.imresize(im, size)
     return color.rgb2lab(np.array(img))
+
+
+def get_weights(file_name):
+    weights_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data/weights")
+    weights_url = "https://github.com/PrimozGodec/ImageColorization/releases/download/v0.0.1"
+
+
+    # if file do not exist download it
+    if not os.path.isfile(os.path.join(weights_dir, file_name)):
+        # init progress bar
+        pbar = ProgressBar(widgets=[Percentage(), Bar()])
+
+        def show_progress(count, block_size, total_size):
+            pbar.update(int(count * block_size * 100 / total_size))
+
+        # download
+        urllib.request.urlretrieve(os.path.join(weights_url, file_name), file_name, reporthook=show_progress)
+
+    return file_name
