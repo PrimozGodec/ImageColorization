@@ -6,7 +6,7 @@ Models are allready trained
 
 ## Instalation
 
-% todo
+
 
 ## Image colorization
 
