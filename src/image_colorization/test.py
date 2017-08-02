@@ -3,6 +3,7 @@ import os
 
 import numpy as np
 import scipy.misc
+from progressbar import ProgressBar, Percentage, Bar, ETA
 from skimage import color
 import math
 
@@ -72,6 +73,10 @@ def color_images_full(model, b_size=32):
     # get list of images to color
     num_of_images = len(images)
 
+    #progress bar
+    pbar = ProgressBar(maxval=num_of_images, widgets=[Percentage(), ' ', Bar(), ' ', ETA()])
+    pbar.start()
+
     # for each batch
     for batch_n in range(int(math.ceil(num_of_images / b_size))):
         _b_size = b_size if (batch_n + 1) * b_size < num_of_images else num_of_images % b_size
@@ -114,6 +119,9 @@ def color_images_full(model, b_size=32):
             # save
             scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(
                 abs_save_path + model.name + "_" + images[batch_n * b_size + i])
+
+        # update progress bar
+        pbar.update(batch_n * b_size)
 
 
 # matrices for multiplying that needs to calculate only once
