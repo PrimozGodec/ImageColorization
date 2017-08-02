@@ -91,7 +91,7 @@ def color_one_video(model, video, b_size=32):
     # open reader and writer
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
     videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video),
-                                          inputdict={"-r": frame_rate},
+                                          # inputdict={"-r": frame_rate},
                                           outputdict={"-r": frame_rate})
 
     # progress bar
