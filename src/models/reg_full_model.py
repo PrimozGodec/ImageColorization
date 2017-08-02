@@ -7,7 +7,6 @@ from keras.layers import Conv2D, Lambda, Dense, concatenate, regularizers, add, 
 
 from src.image_colorization.test import color_images_full
 
-b_size = 32
 input_shape = (224, 224, 1)
 
 weights = "data/weights/imp9-full.h5"
