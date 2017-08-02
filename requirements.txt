@@ -9,4 +9,3 @@ scipy==0.19.1
 sk-video==1.1.8
 sklearn==0.0
 tensorflow-gpu==1.1.0
-tkinter==0.2.0
