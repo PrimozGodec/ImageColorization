@@ -183,7 +183,6 @@ def color_images_part(model):
 
         # for histograms -> transformation from hist to ab
         if model.name == "class_wo_weights" or model.name == "class_with_weights":
-            print("HIST")
             indices = np.argmax(predictions_ab[:, :, :, :], axis=3)
 
             predictions_a = indices // 20 * 10 - 100 + 5
