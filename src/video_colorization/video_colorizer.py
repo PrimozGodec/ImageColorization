@@ -4,6 +4,7 @@ import os
 import math
 import skvideo.io
 import numpy as np
+from progressbar import ProgressBar, Percentage, Bar, ETA
 from skimage import color
 
 from src.models import reg_full_model
@@ -90,6 +91,10 @@ def color_one_video(model, video, b_size=32):
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
     videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video))
 
+    # progress bar
+    pbar = ProgressBar(maxval=num_frames, widgets=[Percentage(), ' ', Bar(), ' ', ETA()])
+    pbar.start()
+
     # for each batch
     for batch_n in range(int(math.ceil(num_frames / b_size))):
         _b_size = b_size if (batch_n + 1) * b_size <= num_frames else num_frames % b_size
@@ -129,7 +134,14 @@ def color_one_video(model, video, b_size=32):
 
             # save
             videowriter.writeFrame(im_rgb)
-        print(batch_n)
+
+        # update progress bar
+        pbar.update(min((batch_n + 1) * b_size, num_frames))
+
+    # end with progress bar
+    pbar.finish()
+
+    videogen.close()
     videowriter.close()
 
 if __name__ == "__main__":

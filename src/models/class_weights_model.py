@@ -23,7 +23,6 @@ def model():
     keras.engine.training.Model
         Keras model for approach
     """
-    K.set_learning_phase(1)
 
     main_input = Input(shape=input_shape, name='image_part_input')
 
@@ -75,7 +74,7 @@ def model():
         x = K.reshape(x, (sh[0] * sh[1] * sh[2], num_classes))
         x = K.softmax(x)
         tf_session = K.get_session()
-        print(sh.eval(session=tf_session))
+
         xc = K.zeros((K.eval(sh[0]) * 16 * 16, 1))
         x = K.concatenate([x, xc], axis=-1)
 
