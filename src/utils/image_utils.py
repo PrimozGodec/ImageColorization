@@ -69,13 +69,16 @@ def get_weights(file_name):
         pbar = None
 
         def show_progress(count, block_size, total_size):
+            nonlocal pbar
             if pbar is None:
                 pbar = ProgressBar(maxval=total_size, widgets=[Percentage(), Bar()])
             pbar.update(count * block_size)
 
         # download
+        pbar.start()
         urllib.request.urlretrieve(os.path.join(weights_url, file_name.split("/")[-1]),
                                    file_name,
                                    reporthook=show_progress)
+        pbar.finish()
         print("Downloading done")
     return file_name
