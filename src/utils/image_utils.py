@@ -62,6 +62,7 @@ def get_weights(file_name):
 
 
     # if file do not exist download it
+    print(os.path.join(weights_dir, file_name))
     if not os.path.isfile(os.path.join(weights_dir, file_name)):
         # init progress bar
         pbar = ProgressBar(widgets=[Percentage(), Bar()])
