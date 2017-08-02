@@ -1,0 +1,12 @@
+h5py==2.7.0
+Keras==2.0.5
+matplotlib==2.0.2
+numpy==1.13.0
+Pillow==4.1.1
+scikit-image==0.13.0
+scikit-learn==0.18.2
+scipy==0.19.1
+sk-video==1.1.8
+sklearn==0.0
+tensorflow-gpu==1.1.0
+tkinter==0.2.0
