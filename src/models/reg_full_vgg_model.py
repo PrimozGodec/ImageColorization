@@ -7,7 +7,6 @@ from keras.layers import Conv2D, Lambda, regularizers, UpSampling2D
 
 from src.image_colorization.test import color_images_full
 
-b_size = 32
 input_shape = (224, 224, 3)
 
 weights = "data/weights/vgg.h5"
