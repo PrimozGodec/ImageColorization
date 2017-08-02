@@ -1,5 +1,6 @@
 import argparse
 
+from src.utils.image_utils import get_weights
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Test model')
@@ -17,7 +18,7 @@ if __name__ == "__main__":
     model = imported_model.model()
 
     # load weights
-    model.load_weights(imported_model.weights)
+    model.load_weights(get_weights(imported_model.weights))
 
     # color images
     imported_model.color_fun(model)
