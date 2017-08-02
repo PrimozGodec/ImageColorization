@@ -84,7 +84,7 @@ def get_weights(file_name):
             if pbar is None:
                 pbar = ProgressBar(maxval=total_size, widgets=[Percentage(), Bar()])
                 pbar.start()
-            pbar.update(min(count * block_size, total_size))
+            pbar.update(min(count * block_size, total_size))  # min because last block not full
 
         # download
         urllib.request.urlretrieve(os.path.join(weights_url, file_name.split("/")[-1]),
