@@ -121,7 +121,7 @@ def color_images_full(model, b_size=32):
                 abs_save_path + model.name + "_" + images[batch_n * b_size + i])
 
         # update progress bar
-        pbar.update(batch_n * b_size)
+        pbar.update(min((batch_n + 1) * b_size, num_of_images))
 
 
 # matrices for multiplying that needs to calculate only once
