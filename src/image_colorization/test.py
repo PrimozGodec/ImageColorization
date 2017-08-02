@@ -123,6 +123,9 @@ def color_images_full(model, b_size=32):
         # update progress bar
         pbar.update(min((batch_n + 1) * b_size, num_of_images))
 
+    # stop progress bar
+    pbar.finish()
+
 
 # matrices for multiplying that needs to calculate only once
 # matrices are used in coloring on parts
@@ -157,6 +160,10 @@ def color_images_part(model):
 
     image_list = get_image_list(test_set_dir_path)
     num_of_images = len(image_list)
+
+    # init progress bar
+    pbar = ProgressBar(maxval=num_of_images, widgets=[Percentage(), ' ', Bar(), ' ', ETA()])
+    pbar.start()
 
     # repeat for each image
     for i in range(num_of_images):
@@ -242,3 +249,9 @@ def color_images_part(model):
         # save
         abs_svave_path = get_abs_path(data_destination)
         scipy.misc.toimage(im_rgb, cmin=0.0, cmax=1.0).save(abs_svave_path + model.name + "_" + image_list[i])
+
+        # update progress bar
+        pbar.update(i + 1)
+
+    # finish progress bar
+    pbar.finish()
