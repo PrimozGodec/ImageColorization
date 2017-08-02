@@ -73,8 +73,8 @@ def model():
         sh = K.shape(x)
         x = K.reshape(x, (sh[0] * sh[1] * sh[2], num_classes))
         x = K.softmax(x)
-        tf_session = K.get_session()
 
+        print(x.shape)
         xc = K.zeros((K.eval(sh[0]) * 16 * 16, 1))
         x = K.concatenate([x, xc], axis=-1)
 
