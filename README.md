@@ -6,6 +6,8 @@ Models are allready trained
 
 ## Instalation
 
+Installation is done in 5 easy steps.
+
 1.  Install all requirements for [Tensorflow](https://www.tensorflow.org/install/ "Tensorflow")
     without installing Tensorflow itself. 
     
