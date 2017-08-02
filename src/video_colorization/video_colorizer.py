@@ -92,6 +92,7 @@ def color_one_video(model, video, b_size=32):
     videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video))
 
     # progress bar
+    print("Starting", video)
     pbar = ProgressBar(maxval=num_frames, widgets=[Percentage(), ' ', Bar(), ' ', ETA()])
     pbar.start()
 
