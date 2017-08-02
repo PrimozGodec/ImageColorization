@@ -7,7 +7,6 @@ from keras.layers import Conv2D, Lambda, Dense, concatenate, UpSampling2D, Activ
 
 from src.image_colorization.test import color_images_part
 
-b_size = 32
 input_shape = (32, 32, 1)
 num_classes = 400
 
