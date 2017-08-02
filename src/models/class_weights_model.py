@@ -73,7 +73,7 @@ def model():
         sh = K.shape(x)
         x = K.reshape(x, (sh[0] * sh[1] * sh[2], num_classes))
         x = K.softmax(x)
-
+        print(x)
         xc = K.zeros(x.shape[1], 1)
         x = K.concatenate([x, xc], axis=-1)
 
