@@ -6,7 +6,27 @@ Models are allready trained
 
 ## Instalation
 
+1.  Install all requirements for [Tensorflow](https://www.tensorflow.org/install/ "Tensorflow")
+    without installing Tensorflow itself. 
+    
+2.  Create virtual environment
+    
+        virtualenv -p python3 colorization_venv
+        
+3.  Activate virtual environment
 
+        source colorization_venv/bin/activate
+        
+4.  Clone **Image and video colorization** package and move in it
+
+        git clone https://github.com/PrimozGodec/ImageColorization.git
+        cd ImageColorization
+        
+5.  Install requirements
+
+        pip install -r requirements.txt
+        
+6.  You are done :)
 
 ## Image colorization
 
