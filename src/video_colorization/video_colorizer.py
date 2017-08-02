@@ -82,7 +82,7 @@ def color_one_video(model, video, b_size=32):
         Size of frames that are colored in one step
     """
     # metadata
-    metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video_colorization"]
+    metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video"]
     num_frames = int(metadata["@nb_frames"])
     w, h = int(metadata["@width"]), int(metadata["@height"])
 
