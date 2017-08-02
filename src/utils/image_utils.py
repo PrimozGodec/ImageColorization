@@ -57,13 +57,13 @@ def resize_image_lab(im, size):
 
 
 def get_weights(file_name):
-    weights_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data/weights")
+    # weights_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../data/weights")
     weights_url = "https://github.com/PrimozGodec/ImageColorization/releases/download/v0.0.1"
 
 
     # if file do not exist download it
-    print(os.path.join(weights_dir, file_name))
-    if not os.path.isfile(os.path.join(weights_dir, file_name)):
+    print(file_name)
+    if not os.path.isfile(file_name):
         # init progress bar
         pbar = ProgressBar(widgets=[Percentage(), Bar()])
 
@@ -72,7 +72,7 @@ def get_weights(file_name):
 
         # download
         urllib.request.urlretrieve(os.path.join(weights_url, file_name),
-                                   os.path.join(weights_dir, file_name),
+                                   file_name,
                                    reporthook=show_progress)
 
     return file_name
