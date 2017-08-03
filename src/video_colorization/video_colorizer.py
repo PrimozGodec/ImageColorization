@@ -161,13 +161,13 @@ def add_sound(video_name):
     command = "ffmpeg -i %s -f mp3 -ab 192000 -vn %s" % (
         os.path.join(get_abs_path(source_dir), video_name),
         os.path.join(get_abs_path(temp_dir), video_name + ".mp3"))
-    subprocess.call(command, shell=True)
+    subprocess.call(command, shell=False)
 
     command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy %s" % (
         os.path.join(get_abs_path(temp_dir), video_name),
         os.path.join(get_abs_path(temp_dir), video_name + ".mp3"),
         os.path.join(get_abs_path(destination_dir), video_name))
-    subprocess.call(command, shell=True)
+    subprocess.call(command, shell=False)
 
 
 if __name__ == "__main__":
