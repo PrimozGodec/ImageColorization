@@ -30,6 +30,10 @@ Installation is done in 5 easy steps.
         
 6.  You are done :)
 
+In case you do not have a GPU device in your computer, please install tensorflow 
+for a CPU. [Instructions](https://www.tensorflow.org/install/ "Tensorflow") can be find
+on a [Tnesorflow website](https://www.tensorflow.org/install/ "Tensorflow").
+
 ## Image colorization
 
 For automatic image colorizing follow those steps:
