@@ -160,7 +160,7 @@ def add_sound(video_name):
     # command = "ffmpeg -i %s -ab 160k -ac 2 -ar 44100 -vn %s" % (
     command = "ffmpeg -i %s -f mp3 -ab 192000 -vn %s" % (
         os.path.join(get_abs_path(source_dir), video_name),
-        os.path.join(get_abs_path(temp_dir), video_name + ".wav"))
+        os.path.join(get_abs_path(temp_dir), video_name + ".mp3"))
     subprocess.call(command, shell=True)
 
     command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy %s" % (
