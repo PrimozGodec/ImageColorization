@@ -1,5 +1,6 @@
 import inspect
 import os
+import subprocess
 
 import math
 import skvideo.io
@@ -12,6 +13,7 @@ from src.utils.image_utils import resize_image_lab
 
 source_dir = "../../data/video/original"
 destination_dir = "../../data/video/colorized"
+temp_dir = "../../data/video/colorized"
 
 
 def get_abs_path(relative):
@@ -89,11 +91,9 @@ def color_one_video(model, video, b_size=32):
     frame_rate = metadata["@r_frame_rate"].split("/")
     frame_rate = str(float(frame_rate[0]) / float(frame_rate[1]))
 
-    print(skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["audio"])
-
     # open reader and writer
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
-    videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(destination_dir), video),
+    videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(temp_dir), video),
                                           inputdict={"-r": frame_rate},
                                           outputdict={"-r": frame_rate})
 
@@ -150,6 +150,24 @@ def color_one_video(model, video, b_size=32):
 
     videogen.close()
     videowriter.close()
+
+    """ adding sound to video """
+    add_sound(video)
+
+
+def add_sound(video_name):
+    # record the sound
+    command = "ffmpeg -i %s -ab 160k -ac 2 -ar 44100 -vn %s" % (
+        os.path.join(get_abs_path(source_dir), video_name),
+        os.path.join(get_abs_path(temp_dir), video_name + ".wav"))
+    subprocess.call(command, shell=True)
+
+    command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy %s" % (
+        os.path.join(get_abs_path(temp_dir), video_name),
+        os.path.join(get_abs_path(temp_dir), video_name + ".wav"),
+        os.path.join(get_abs_path(destination_dir), video_name))
+    subprocess.call(command, shell=True)
+
 
 if __name__ == "__main__":
 
