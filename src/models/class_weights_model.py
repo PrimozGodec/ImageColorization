@@ -5,6 +5,8 @@ from keras import backend as K, Input
 from keras import optimizers
 from keras.layers import Conv2D, Lambda, Dense, concatenate, UpSampling2D, Activation
 
+import tensorflow as tf
+
 from src.image_colorization.test import color_images_part
 
 input_shape = (32, 32, 1)
@@ -73,9 +75,9 @@ def model():
         sh = K.shape(x)
         x = K.reshape(x, (sh[0] * sh[1] * sh[2], num_classes))
         x = K.softmax(x)
-        print(x)
 
-        xc = K.zeros(x.shape[1], 1)
+        xc = tf.fill(tf.stack([sh[0] * 16 * 16, 1]), 0.0)
+        # xc = K.zeros(x.shape[1], 1)
         x = K.concatenate([x, xc], axis=-1)
 
         x = K.reshape(x, (sh[0], sh[1], sh[2], num_classes + 1))
