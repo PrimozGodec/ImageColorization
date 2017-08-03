@@ -93,7 +93,8 @@ def color_one_video(model, video, b_size=32):
 
     # open reader and writer
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
-    videowriter = skvideo.io.FFmpegWriter(os.path.join(get_abs_path(temp_dir), video),
+    temp_video_file = os.path.join(get_abs_path(temp_dir), video)
+    videowriter = skvideo.io.FFmpegWriter(temp_video_file,
                                           inputdict={"-r": frame_rate},
                                           outputdict={"-r": frame_rate})
 
@@ -151,8 +152,12 @@ def color_one_video(model, video, b_size=32):
     videogen.close()
     videowriter.close()
 
-    """ adding sound to video """
+    # adding sound to video
     add_sound(video)
+
+    # remove temporary video file
+    if os.path.isfile(temp_video_file):
+        os.remove(temp_video_file)
 
 
 def add_sound(video_name):
