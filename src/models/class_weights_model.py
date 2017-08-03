@@ -77,7 +77,6 @@ def model():
         x = K.softmax(x)
 
         xc = tf.fill(tf.stack([sh[0] * 16 * 16, 1]), 0.0)
-        # xc = K.zeros(x.shape[1], 1)
         x = K.concatenate([x, xc], axis=-1)
 
         x = K.reshape(x, (sh[0], sh[1], sh[2], num_classes + 1))
