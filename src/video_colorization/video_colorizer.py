@@ -86,7 +86,8 @@ def color_one_video(model, video, b_size=32):
     metadata = skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["video"]
     num_frames = int(metadata["@nb_frames"])
     w, h = int(metadata["@width"]), int(metadata["@height"])
-    frame_rate = metadata["@r_frame_rate"].split("/")[0]
+    frame_rate = metadata["@r_frame_rate"].split("/")
+    frame_rate = float(frame_rate[0]) / float(frame_rate[1])
 
     print(metadata)
 
