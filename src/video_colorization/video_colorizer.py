@@ -169,8 +169,6 @@ def add_sound(video_name):
     video_name : str
         name of the video ve color
     """
-
-
     sound_file = os.path.join(get_abs_path(temp_dir), video_name + ".mp3")
 
     # record the sound
