@@ -165,13 +165,15 @@ def add_sound(video_name):
     sound_file = os.path.join(get_abs_path(temp_dir), video_name + ".mp3")
 
     # record the sound
-    command = "ffmpeg -i %s -f mp3 -ab 192000 -vn -y -loglevel quiet %s" % (
+    # command = "ffmpeg -i %s -f mp3 -ab 192000 -vn -y -loglevel quiet %s" % (
+    command = "ffmpeg -i %s -f mp3 -ab 192000 -vn -y %s" % (
         os.path.join(get_abs_path(source_dir), video_name),
         sound_file)
     subprocess.call(command, shell=True)
 
     # write the soudn
-    command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy -y -loglevel quiet %s" % (
+    # command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy -y -loglevel quiet %s" % (
+    command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy -y %s" % (
         os.path.join(get_abs_path(temp_dir), video_name),
         sound_file,
         os.path.join(get_abs_path(destination_dir), video_name))
