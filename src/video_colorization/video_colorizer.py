@@ -158,12 +158,12 @@ def color_one_video(model, video, b_size=32):
 def add_sound(video_name):
     # record the sound
     # command = "ffmpeg -i %s -ab 160k -ac 2 -ar 44100 -vn %s" % (
-    command = "ffmpeg -i %s -f mp3 -ab 192000 -vn %s" % (
+    command = "ffmpeg -i %s -f mp3 -ab 192000 -vn -y %s" % (
         os.path.join(get_abs_path(source_dir), video_name),
         os.path.join(get_abs_path(temp_dir), video_name + ".mp3"))
     subprocess.call(command, shell=False)
 
-    command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy %s" % (
+    command = "ffmpeg -i %s -i %s -vcodec copy -acodec copy -y %s" % (
         os.path.join(get_abs_path(temp_dir), video_name),
         os.path.join(get_abs_path(temp_dir), video_name + ".mp3"),
         os.path.join(get_abs_path(destination_dir), video_name))
