@@ -13,7 +13,7 @@ from src.utils.image_utils import resize_image_lab
 
 source_dir = "../../data/video/original"
 destination_dir = "../../data/video/colorized"
-temp_dir = "../../data/video/colorized"
+temp_dir = "../../data/temp"
 
 
 def get_abs_path(relative):
