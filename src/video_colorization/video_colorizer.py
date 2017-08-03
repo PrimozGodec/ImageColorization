@@ -89,7 +89,7 @@ def color_one_video(model, video, b_size=32):
     frame_rate = metadata["@r_frame_rate"].split("/")
     frame_rate = str(float(frame_rate[0]) / float(frame_rate[1]))
 
-    print(metadata)
+    print(skvideo.io.ffprobe(os.path.join(get_abs_path(source_dir), video))["audio"])
 
     # open reader and writer
     videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
