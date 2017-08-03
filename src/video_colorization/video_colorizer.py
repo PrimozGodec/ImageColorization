@@ -87,7 +87,7 @@ def color_one_video(model, video, b_size=32):
     num_frames = int(metadata["@nb_frames"])
     w, h = int(metadata["@width"]), int(metadata["@height"])
     frame_rate = metadata["@r_frame_rate"].split("/")
-    frame_rate = str(loat(frame_rate[0]) / float(frame_rate[1]))
+    frame_rate = str(float(frame_rate[0]) / float(frame_rate[1]))
 
     print(metadata)
 
