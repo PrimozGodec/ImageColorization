@@ -1,1 +1,1 @@
-Directory to store colored videos
+Directory to store colored videos by a program.
