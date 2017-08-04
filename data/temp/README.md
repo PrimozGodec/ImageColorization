@@ -1,1 +1,1 @@
-Temporary dir for partialAly processed items. 
+Temporary directory for partially processed items. 
