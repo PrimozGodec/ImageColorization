@@ -55,7 +55,7 @@ For automatic image colorizing follow those steps:
 
 3. You can find colored images in `/data/image/colorized` directory.
 
-Colorization take some time and is dependent on your GPU or CPU specifications. 
+ on your GPU or CPU specifications. 
 You will see progress bar that show you how far you are with colorization.
 
 ## Video colorization
@@ -72,6 +72,6 @@ For automatic video colorizing follow those steps:
 
 3. You can find colored videos in `/data/video/colorized` directory.
 
-Colorization take some time  since there is a lot of images to color in a video
-and is dependent on your GPU or CPU specifications. 
+Colorization take few hours since there is a lot of images to color in a video
+and depends on your GPU or CPU specifications and length of a video. 
 You will see progress bar that show you how far you are with colorization.
