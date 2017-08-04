@@ -2,11 +2,11 @@ Image and video colorizer
 =========================
 
 Image and video colorizer is package for automatic image and video colorization. 
-Models are allready trained 
+Models are already trained.
 
 ## Instalation
 
-Installation is done in 5 easy steps.
+Installation can be done in 5 easy steps
 
 1.  Install all requirements for [Tensorflow](https://www.tensorflow.org/install/ "Tensorflow")
     without installing Tensorflow itself. 
@@ -30,7 +30,7 @@ Installation is done in 5 easy steps.
         
 6.  You are done :)
 
-In case you do not have a GPU device in your computer, please install tensorflow 
+In case you do not have a GPU device in your computer, please install Tensorflow 
 for a CPU. [Instructions](https://www.tensorflow.org/install/ "Tensorflow") can be find
 on a [Tnesorflow website](https://www.tensorflow.org/install/ "Tensorflow").
 
@@ -55,9 +55,12 @@ For automatic image colorizing follow those steps:
 
 3. You can find colored images in `/data/image/colorized` directory.
 
+Colorization take some time and is dependent on your GPU or CPU specifications. 
+You will see progress bar that show you how far you are with colorization.
+
 ## Video colorization
 
-For automatic image colorizing follow those steps:
+For automatic video colorizing follow those steps:
 
 1.  Copy images into `/data/video/original` directory
 
@@ -68,3 +71,7 @@ For automatic image colorizing follow those steps:
     Video colorizer is always using `reg_full_model`.
 
 3. You can find colored videos in `/data/video/colorized` directory.
+
+Colorization take some time  since there is a lot of images to color in a video
+and is dependent on your GPU or CPU specifications. 
+You will see progress bar that show you how far you are with colorization.
