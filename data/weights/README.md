@@ -1,1 +1,1 @@
-This directory contains weight which model uses.
+This directory contains weights that model uses. Models were pretained and parameters are saved in those files. 
