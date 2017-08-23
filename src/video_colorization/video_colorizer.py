@@ -170,6 +170,7 @@ def add_sound(video_name):
         name of the video ve color
     """
     sound_file = os.path.join(get_abs_path(temp_dir), video_name + ".mp3")
+    video_name_without_ending = ".".join(video_name.split(".")[:-1])
 
     # record the sound
     command = "ffmpeg -i '%s' -f mp3 -ab 192000 -vn -y -loglevel error '%s'" % (
@@ -181,7 +182,7 @@ def add_sound(video_name):
     command = "ffmpeg -i '%s' -i '%s' -vcodec copy -acodec copy -y -loglevel error '%s'" % (
         os.path.join(get_abs_path(temp_dir), video_name),
         sound_file,
-        os.path.join(get_abs_path(destination_dir), video_name))
+        os.path.join(get_abs_path(destination_dir), video_name_without_ending + ".mp4"))
     subprocess.call(command, shell=True)
 
     # remove the temporary files if exist
