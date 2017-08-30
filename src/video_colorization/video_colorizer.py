@@ -186,8 +186,8 @@ def add_sound(video_name):
     subprocess.call(command, shell=True)
 
     # remove the temporary files if exist
-    if os.path.isfile(sound_file):
-        os.remove(sound_file)
+    # if os.path.isfile(sound_file):
+    #     os.remove(sound_file)
 
 
 if __name__ == "__main__":
