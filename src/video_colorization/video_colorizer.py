@@ -156,8 +156,8 @@ def color_one_video(model, video, b_size=32):
     add_sound(video)
 
     # remove temporary video file
-    if os.path.isfile(temp_video_file):
-        os.remove(temp_video_file)
+    # if os.path.isfile(temp_video_file):
+    #     os.remove(temp_video_file)
 
 
 def add_sound(video_name):
