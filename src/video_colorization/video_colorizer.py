@@ -90,9 +90,10 @@ def color_one_video(model, video, b_size=32):
     w, h = int(metadata["@width"]), int(metadata["@height"])
     frame_rate = metadata["@r_frame_rate"].split("/")
     frame_rate = str(float(frame_rate[0]) / float(frame_rate[1]))
+    video_name_without_ending = ".".join(video.split(".")[:-1])
 
     # open reader and writer
-    videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video))
+    videogen = skvideo.io.vreader(os.path.join(get_abs_path(source_dir), video_name_without_ending + ".mp4"))
     temp_video_file = os.path.join(get_abs_path(temp_dir), video)
     videowriter = skvideo.io.FFmpegWriter(temp_video_file,
                                           inputdict={"-r": frame_rate},
