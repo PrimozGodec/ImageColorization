@@ -8,8 +8,14 @@ Models are already trained.
 
 Installation can be done in 5 easy steps
 
-1.  Install all requirements for [Tensorflow](https://www.tensorflow.org/install/ "Tensorflow")
-    without installing Tensorflow itself. 
+1.  Install all requirements for [Tensorflow](https://www.tensorflow.org/install/) 
+and tensorflow itself with:
+
+        pip install tensorflow-gpu
+        
+     if you use GPU device for computation otherwise:
+     
+        pip install tensorflow
     
 2.  Create virtual environment
     
